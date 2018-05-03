@@ -1,9 +1,10 @@
-package org.imooc.controller.content;
+package org.imooc.controller;
 
 import org.imooc.dto.AdDto;
 import org.imooc.service.AdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -13,14 +14,11 @@ public class AdController {
 	@Autowired
 	private AdService adService;
 
+
 	public String init(){
 		return "/content/adlist";
 	}
 
-	@RequestMapping("/addInit")
-	public String addInit(){
-		return "/conten/adAdd";
-	}
 	/*
 	* 这个是广告的添加路由，转发到店铺添加jsp页面
 	* */
@@ -29,6 +27,19 @@ public class AdController {
 		adService.add(adDto);
 		return "/content/adAdd";
 	}
+
+	/*
+	 *
+	 * 这个是搜索广告实体的列表
+	 * */
+	@RequestMapping("/search")
+	public String search(Model model, AdDto adDto) {
+		model.addAttribute("list", adService.searchByPage(adDto));
+		model.addAttribute("searchParam", adDto);
+		return "/content/adList";
+	}
+
+
 
 	/*	*//**
 	 * 广告管理页初始化(点广告管理菜单进入的第一个页面)

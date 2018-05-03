@@ -22,6 +22,7 @@
     <context:property-placeholder location="classpath:properties/system.properties"/>
      <!-- 扫描文件(自动将service层注入) -->
     <context:component-scan base-package="org.imooc.service"/>
+
     <!-- 配置数据源 -->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <property name="driverClass" value="${jdbc.driver}"/>

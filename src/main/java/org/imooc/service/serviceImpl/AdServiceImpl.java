@@ -4,12 +4,15 @@ import org.imooc.bean.Ad;
 import org.imooc.dao.AdDao;
 import org.imooc.dto.AdDto;
 import org.imooc.service.AdService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class AdServiceImpl implements AdService {
@@ -57,5 +60,27 @@ public class AdServiceImpl implements AdService {
         else {
             return false;
         }
+    }
+
+
+    /*
+     * 这个实现的是查询广告实体的列表
+     * 因为用到了DTO，最后就是需要把你拿到的原本实体都给放到实体的DTO中(这个DTO中只含有原本实体的部分字段)
+     * */
+    @Override
+    public List<AdDto> searchByPage(AdDto adDto) {
+        List<AdDto> result = new ArrayList<AdDto>();
+        Ad condition = new Ad();
+        //这个用的是spring的工具类把adDTO里面的数据都能复制到当前创建的Ad实体中
+        BeanUtils.copyProperties(adDto,condition);
+        //然后这里调用dao层的数据去拿到Ad实体类的列表信息
+        List<Ad> adList = adDao.selectByPage(condition);
+        //然后遍历从dao层拿到的数据
+        for (Ad ad : adList){
+            AdDto adDtoTemp = new AdDto();
+            result.add(adDtoTemp);
+            BeanUtils.copyProperties(ad,adDtoTemp);
+        }
+        return result;
     }
 }
