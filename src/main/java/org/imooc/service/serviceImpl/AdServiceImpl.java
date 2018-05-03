@@ -4,6 +4,7 @@ import org.imooc.bean.Ad;
 import org.imooc.dao.AdDao;
 import org.imooc.dto.AdDto;
 import org.imooc.service.AdService;
+import org.imooc.util.FileUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,9 +20,13 @@ public class AdServiceImpl implements AdService {
 
     @Autowired
     private AdDao adDao;
+
     //这个是广告图片的保存路径地址
     @Value("${adImage.savePath}")
     private String adImageSavePath;
+    //这个死
+    @Value("${adImage.url}")
+    private String adImageUrl;
     /*
     * 这个是service层去调用Dao层的数据，功能就是添加广告实体
     * */
@@ -83,4 +88,64 @@ public class AdServiceImpl implements AdService {
         }
         return result;
     }
+    /*
+     * 通过id查询并且删除广告数据
+     *  1.先拿到参数的id去做查询
+     *  2.通过id直接去删除
+     *  3.然后判断返回结果
+     * */
+    @Override
+    public boolean remove(Long id) {
+        Ad ad = adDao.selectById(id);
+        int deleteRows = adDao.delete(id);
+        FileUtil.delete(adImageSavePath+ad.getImgFileName());
+        //然后判断影响的行数是不是为1
+        return deleteRows==1;
+    }
+    /*
+    * 因为你要删除广告实体数据的话，必须要先查询出那个id的对象
+    * */
+    @Override
+    public AdDto getById(Long id) {
+        AdDto result = new AdDto();
+        Ad ad = adDao.selectById(id);
+        //这个是把从dao层拿到的数据赋值到DTO里面
+        BeanUtils.copyProperties(ad,result);
+        result.setImg(adImageUrl+ad.getImgFileName());
+        //把图片名字和路径从新设置进去，然后返回到DTO里面
+        return result;
+    }
+    /*
+    * 这个是修改实体信息
+    *   1.首先先定一个Ad实体
+    *   2.通过spring的工具类把从controller层拿到的数据赋值到这个Ad实体
+    *   3.判断从DTO中拿到的数据是不是为空且拿到的文件流长度大于0
+    *
+    *
+    *
+    * */
+    @Override
+    public boolean modify(AdDto adDto) {
+        Ad ad = new Ad();
+        BeanUtils.copyProperties(adDto, ad);
+        String fileName = null;
+        if (adDto.getImgFile() != null && adDto.getImgFile().getSize() > 0) {
+            try {
+                fileName = FileUtil.save(adDto.getImgFile(), adImageSavePath);
+                ad.setImgFileName(fileName);
+            } catch (IllegalStateException | IOException e) {
+                // TODO 需要添加日志
+                return false;
+            }
+        }
+        int updateCount = adDao.update(ad);
+        if (updateCount != 1) {
+            return false;
+        }
+        if (fileName != null) {
+            return FileUtil.delete(adImageSavePath + adDto.getImgFileName());
+        }
+        return true;
+    }
+
 }

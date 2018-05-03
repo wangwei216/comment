@@ -54,7 +54,7 @@
 
     <!--进来的第一个界面-->
     <welcome-file-list>  
-        <welcome-file>jsp/content/adList.jsp</welcome-file>
+        <welcome-file>jsp/system/index.jsp</welcome-file>
     </welcome-file-list>
 
 </web-app>

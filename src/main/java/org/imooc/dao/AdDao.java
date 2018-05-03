@@ -17,4 +17,18 @@ public interface AdDao {
      * 从数据库中查询广告信息列表
      * */
     List<Ad> selectByPage(Ad ad);
+    /*
+    *
+    * 根据主键删除广告列表中的数据
+    * */
+    int delete(long id);
+    /*
+    * 根据主键查询广告实体，因为你要删除的话，必须要先查询删除那个
+    * */
+    Ad selectById(Long id);
+    /*
+    * 根据主键先查询然后再去修改广告实体类
+    * */
+    int update(Ad ad);
+
 }

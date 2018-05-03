@@ -27,5 +27,35 @@
         order by weight desc,id
     </select>
 
+    <!--根据主键删除广告的数据-->
+    <delete id="delete">
+        delete from ad where id=#{_parameter}
+    </delete>
+    <!--根据主键查询广告实体数据-->
+    <select id="selectById" resultType="org.imooc.bean.Ad">
+        select id,title,img_file_name,link,weight from ad where id=#{_parameter}
+    </select>
+
+    <!--根据主键去修改广告实体-->
+    <update id="update">
+        update ad
+        <set>
+            <if test="title != null">
+                title = #{title},
+            </if>
+            <if test="imgFileName != null">
+                img_file_name = #{imgFileName},
+            </if>
+            <if test="link != null">
+                link = #{link},
+            </if>
+            <if test="weight != null">
+                weight = #{weight},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+
     </mapper>
 
