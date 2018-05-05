@@ -1,5 +1,10 @@
 package org.imooc.util;
 
+import org.imooc.constant.SessionKeyConst;
+import org.imooc.dto.ActionDto;
+
+import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -47,7 +52,7 @@ public class CommonUtil {
 	 * @param method http动作
 	 * @return true:包含，false：不包含
 	 */
-	/*public static boolean contains(HttpSession session,String url,String method) {
+	public static boolean contains(HttpSession session, String url, String method) {
 		Object obj = session.getAttribute(SessionKeyConst.ACTION_INFO);
 		if(obj != null) {
 			@SuppressWarnings("unchecked")
@@ -63,5 +68,5 @@ public class CommonUtil {
 			}
 		}
 		return false;
-	}*/
+	}
 }

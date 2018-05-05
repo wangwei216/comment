@@ -7,11 +7,12 @@
         <param-name>contextConfigLocation</param-name>  
         <param-value>classpath:applicationContext.xml</param-value>  
     </context-param>
-
-
     <!-- 映射的url -->
 
 
+
+
+    <!--这个是配置的spring的监听器，现在还不太懂-->
     <listener>   
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>  
 	</listener>  
@@ -32,9 +33,33 @@
     <filter-mapping>  
         <filter-name>encodingFilter</filter-name>  
         <url-pattern>/*</url-pattern>  
-    </filter-mapping>  
-  
-  
+    </filter-mapping>
+
+
+    <!--表示用这个multipartResolverBeanName参数来指明用ID为这个的multipartResolver文件上传解析器去解析-->
+    <filter>
+        <filter-name>MultipartFilter</filter-name>
+        <filter-class>org.springframework.web.multipart.support.MultipartFilter</filter-class>
+        <init-param>
+            <param-name>multipartResolverBeanName</param-name>
+            <param-value>multipartResolver</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>MultipartFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+    <!--这个就是配置的当你在执行用户向前端控制器发送请求和去寻找url映射器的时候那两步中间的步骤-->
+    <filter>
+        <filter-name>hiddenHttpMethodFilter</filter-name>
+        <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>hiddenHttpMethodFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
     <!-- Spring MVC servlet 这个也就是配置springMVC的前端控制器 -->
     <servlet>
         <servlet-name>SpringMVC</servlet-name>  
@@ -54,7 +79,7 @@
 
     <!--进来的第一个界面-->
     <welcome-file-list>  
-        <welcome-file>jsp/content/adList.jsp</welcome-file>
+        <welcome-file>jsp/content/businessList.jsp</welcome-file>
     </welcome-file-list>
 
 </web-app>

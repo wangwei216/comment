@@ -33,9 +33,9 @@
 								</td>
 	                            <td style="text-align: right;" width="150">
 	                            	<input class="tabSub" value="查询" onclick="search('1');" type="button"/>
-	                            	<tr:auth url="/ad/addInit">
+	                            	<t:auth url="/ad/addInit">
 	                            		<input class="tabSub" value="添加" onclick="location.href='${basePath}/ad/addInit'" type="button"/>
-	                            	</tr:auth>
+	                            	</t:auth>
 	                            </td>
 	       					</tr>
 						</tbody>
@@ -69,7 +69,7 @@
 						
 						<!-- 分页 -->
 
-						<tr:page jsMethodName="search" page="${searchParam.page}"></tr:page>
+						<t:page jsMethodName="search" page="${searchParam.page}"></t:page>
 					</div>
 				</div>
 			</div>
