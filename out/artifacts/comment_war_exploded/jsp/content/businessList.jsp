@@ -58,10 +58,10 @@
 										<td>${item.cityDic.name}</td>
 										<td>${item.categoryDic.name}</td>
 										<td>
-											<tr:auth url="/businesses/${item.id}" method="PUT">
+											<tr:auth url="/business/modifyInit" method="PUT">
 												<a href="javascript:void(0);" onclick="modifyInit('${item.id}')">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;
 											</tr:auth>
-											<tr:auth url="/businesses/${item.id}" method="DELETE">
+											<tr:auth url="/business/remove/${item.id}" method="DELETE">
 												<a href="javascript:void(0);" onclick="remove('${item.id}')">删除</a>
 											</tr:auth>
 										</td>

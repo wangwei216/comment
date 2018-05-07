@@ -1,5 +1,5 @@
 function remove(id) {
-	$("#mainForm").attr("action",$("#basePath").val() + "/businesses/" + id);
+	$("#mainForm").attr("action",$("#basePath").val() + "/businesses/remove" + id);
 	$("#mainForm").submit();
 }
 
@@ -10,5 +10,5 @@ function search() {
 }
 
 function modifyInit(id) {
-	location.href = $("#basePath").val() + "/businesses/" + id;
+	location.href = $("#basePath").val() + "/businesses/modifyInit" + id;
 }

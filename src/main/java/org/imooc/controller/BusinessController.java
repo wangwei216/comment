@@ -75,7 +75,7 @@ public class BusinessController {
     /*
     * 这个是初始化修改商户信息
     * */
-    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
+    @RequestMapping("/modifyInit")
     public String modify(Model model, @PathVariable("id") Long id){
         //首先先把数据传输模型放到model模型中
         model.addAttribute("modifyObj",businessService.getById(id));
@@ -85,10 +85,18 @@ public class BusinessController {
     /*
     * 商户修改
     * */
-    @RequestMapping(value = "/{id}",method = RequestMethod.PUT)
-    public String modify(@PathVariable("id")Long id,BusinessDto businessDto){
-        System.out.println(id);
-        return "/content/businessModiry";
+    @RequestMapping("/modify")
+    public String modify(Model model,BusinessDto businessDto){
+        //先把数据传输的数据实体set进model中
+        model.addAttribute("modifyObj",businessDto);
+        if (businessService.modify(businessDto)){
+            model.addAttribute(PageCodeEnum.KEY, PageCodeEnum.MODIFY_SUCCESS);
+        }
+        else {
+            model.addAttribute(PageCodeEnum.KEY,PageCodeEnum.MODIFY_FAIL);
+        }
+
+        return "/content/businessModify";
     }
 
 

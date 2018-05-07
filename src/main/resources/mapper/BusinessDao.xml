@@ -128,9 +128,9 @@
             <if test="number!=null">
                 number =#{number},
             </if>
-        <!--    <if test="desc!=null">
+            <if test="desc!=null">
                 desc=#{desc},
-            </if>-->
+            </if>
             <if test="city!=null">
                 city=#{city},
             </if>

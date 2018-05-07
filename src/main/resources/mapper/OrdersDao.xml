@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+	namespace：必须与对应的接口全类名一致
+	id:必须与对应接口的某个对应的方法名一致
+
+ -->
+    <mapper namespace="org.imooc.dao.OrdersDao">
+
+
+    <!--这个定义的id需要和返回的结果集类型保持一致，type类型也需要用绝对路径,就是我最后需要什么字段名，我就把什么字段名给映射进去-->
+    <resultMap type="org.imooc.bean.Orders" id="OrdersResultMap">
+        <id column="id" property="id" />
+        <result column="comment_state" property="commentState" />
+        <result column="price" property="price" />
+        <association property="business" javaType="org.imooc.bean.Business">
+            <result column="img_file_name" property="imgFileName"/>
+            <result column="title" property="title"/>
+            <result column="number" property="number"/>
+        </association>
+        <association property="member" javaType="org.imooc.bean.Member">
+            <result column="phone" property="phone"/>
+        </association>
+    </resultMap>
+
+        <!--这个是插入订单实体类-->
+        <insert id="insert" >
+            INSERT INTO orders
+            (business_id, member_id, num, comment_state, price, create_time)
+            VALUES (#{businessId},#{memberId},#{num},#{commentState},#{price},#{createTime})
+        </insert>
+
+        <!--根据用户的手机号码查询订单信息列表,因为返回的是一个集合而且还需要多表联查，所以就需要自己定义一个返回的结果集合来进行去保存从数据库中拿到的数据-->
+    <select id="select" resultMap="OrdersResultMap">
+        select o.id,o.comment_state,o.price,b.img_file_name,b.title,b.number
+        from orders o,business b where o.business_id=b.id
+        <if test="memberId != null">
+            and o.member_id = #{memberId}
+        </if>
+    </select>
+    <!--根据订单表的id去查询-->
+    <select id="selectById" resultType="org.imooc.bean.Orders">
+        select id,business_id,member_id,num,comment_state,price
+        from orders where id=#{_parameter}
+    </select>
+
+</mapper>
+

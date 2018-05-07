@@ -31,10 +31,12 @@ public interface BusinessDao {
     /*
     * 删除商户信息
     * */
+
     int delete(long id);
     /*
     * 修改商户信息
     * */
+
     int update(Business business);
 
     /*

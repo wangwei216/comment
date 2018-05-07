@@ -79,7 +79,7 @@
 
     <!--进来的第一个界面-->
     <welcome-file-list>  
-        <welcome-file>jsp/content/businessList.jsp</welcome-file>
+        <welcome-file>jsp/content/orderList.jsp</welcome-file>
     </welcome-file-list>
 
 </web-app>
