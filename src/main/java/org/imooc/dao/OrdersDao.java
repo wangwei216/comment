@@ -13,16 +13,18 @@ public interface OrdersDao {
     * */
     int insert(Orders orders);
 
-
     /*
     * 查询订单信息实体信息
     * */
-    List<Orders>select(Orders orders);
+    List<Orders> select(Orders orders);
 
     /*
     * 这个是根据订单主键去查询订单实体对象
     * */
     Orders selectById(long id);
-
+    /*
+    * 这个是修改订单信息
+    * */
+    int update(Orders orders);
 
 }

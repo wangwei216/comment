@@ -36,13 +36,20 @@
         </property>  
     </bean> -->
 
-	<!--<mvc:interceptors>
+    <!--这个是对静态资源的拦截，就是当你访问需要的页面的时候，我不给你前台界面，还得看我给你什么页面-->
+	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/graduation/*"/>
-			<bean class="cn.reatent.interceptors.GraduationInterceptor"></bean>
+            <!--这一步意思是先拦截所有的，然后再去放行哪个-->
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/login/**"/>
+            <!--因为你上面配置的是拦截所有的资源包括的还有css、js的资源-->
+            <mvc:exclude-mapping path="/css/**"/>
+            <mvc:exclude-mapping path="/images/**"/>
+            <mvc:exclude-mapping path="/js/**"/>
+            <!--这个是当Spring把界面拦截下来之后并不知道要干嘛，具体的业务逻辑还得自己在这个类中去写-->
+			<bean class="org.imooc.controller.interceptor.SessionInterceptor"></bean>
 		</mvc:interceptor>
-		
-	</mvc:interceptors> -->
+	</mvc:interceptors>
 
 
     <!-- 配置视图解析器 -->

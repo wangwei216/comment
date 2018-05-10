@@ -31,7 +31,7 @@
             VALUES (#{businessId},#{memberId},#{num},#{commentState},#{price},#{createTime})
         </insert>
 
-        <!--根据用户的手机号码查询订单信息列表,因为返回的是一个集合而且还需要多表联查，所以就需要自己定义一个返回的结果集合来进行去保存从数据库中拿到的数据-->
+        <!--根据用户member的主键进行查询订单信息列表,因为返回的是一个集合而且还需要多表联查，所以就需要自己定义一个返回的结果集合来进行去保存从数据库中拿到的数据-->
     <select id="select" resultMap="OrdersResultMap">
         select o.id,o.comment_state,o.price,b.img_file_name,b.title,b.number
         from orders o,business b where o.business_id=b.id
@@ -44,6 +44,18 @@
         select id,business_id,member_id,num,comment_state,price
         from orders where id=#{_parameter}
     </select>
+
+    <!--这个去修改订单信息-->
+    <update id="update">
+    update orders
+    <set>
+        <if test="commentState != null">
+            comment_state = #{commentState},
+        </if>
+    </set>
+    where id=#{id}
+</update>
+
 
 </mapper>
 

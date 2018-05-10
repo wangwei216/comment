@@ -12,8 +12,12 @@ public interface OrdersService {
     //通过订单id查询拿到订单信息
     OrdersDto getById(long id);
 
-    //这个是根据用户的手机号码的去查询订单信息集合
+    //这个是根据用户的主键去查询订单信息集合
     List<OrdersDto> getListByMemberId(long memberId);
+
+    //这个是修改订单信息，只要是修改都最好用Boolean类型来作为返回值
+    Boolean modify(OrdersDto ordersDto);
+
 
 
 }

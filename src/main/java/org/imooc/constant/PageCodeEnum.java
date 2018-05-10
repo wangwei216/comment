@@ -16,7 +16,8 @@ public enum PageCodeEnum {
     ASSIGN_SUCCESS(1500,"分配成功！"),
     ASSIGN_FAIL(1501,"分配失败！"),
     ORDER_SUCCESS(1600,"排序成功！"),
-    ORDER_FAIL(1601,"排序失败！"),;
+    ORDER_FAIL(1601,"排序失败！"),
+    CHECK_FAIL(16002,"从数据库拿到数据失败！");
     
     private Integer code;
     private String msg;

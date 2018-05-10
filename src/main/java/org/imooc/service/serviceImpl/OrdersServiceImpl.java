@@ -70,4 +70,20 @@ public class OrdersServiceImpl implements OrdersService {
         }
         return result;
     }
+
+    /*
+    * 这个是修改订单信息实现
+    *   1.先去把数据传输层的实体给复制到你要传到Dao层修改接口的参数实体
+    * */
+    @Override
+    public Boolean modify(OrdersDto ordersDto) {
+
+        Orders ordersForUpdate = new Orders();
+        BeanUtils.copyProperties(ordersDto,ordersForUpdate);
+        int updateNum = ordersDao.update(ordersForUpdate);
+        if (updateNum!=1){
+            return false;
+        }
+        return true;
+    }
 }

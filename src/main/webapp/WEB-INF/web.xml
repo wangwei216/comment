@@ -18,7 +18,7 @@
 	</listener>  
 	<!-- <listener>
     <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
-  </listener> -->
+  </listener>-->
 
     <!-- 编码过滤器 -->  
     <filter>  
@@ -79,7 +79,7 @@
 
     <!--进来的第一个界面-->
     <welcome-file-list>  
-        <welcome-file>jsp/content/orderList.jsp</welcome-file>
+        <welcome-file>jsp/system/login.jsp</welcome-file>
     </welcome-file-list>
 
 </web-app>

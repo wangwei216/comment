@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+	namespace：必须与对应的接口全类名一致
+	id:必须与对应接口的某个对应的方法名一致
+
+ -->
+<mapper namespace="org.imooc.dao.CommentDao">
+
+
+    <resultMap type="org.imooc.bean.Comment" id="CommentResultMap">
+        <id column="id" property="id" />
+        <result column="orsers_id" property="ordersId"/>
+        <result column="comment" property="comment" />
+        <result column="star" property="star" />
+        <result column="create_time" property="createTime" />
+        <association property="phone" javaType="org.imooc.bean.Member">
+            <result column="phone" property="phone"/>
+        </association>
+    </resultMap>
+    <!--这个是从订单表、用户表、商户表、评论表联查得到评论的所有信息和用户的手机号,通过商户的id号去查询-->
+    <select id="selectByPage" resultMap="CommentResultMap">
+        select c.id,c.orders_id,c.comment,c.star,c.create_time,m.phone
+        from comment c,orders o,business b,member m
+        where c.orders_id = o.id and o.business_id = b.id
+        <if test="orders.business.id != null">
+            and b.id = #{orders.business.id}
+        </if>
+        order by create_time desc
+    </select>
+   
+
+</mapper>
+

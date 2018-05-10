@@ -86,6 +86,15 @@
 		                        <div class="ileft" id="OmenuDiv">
 		                        	<h3 onclick="clisecondMenu(this,'${basePath}/ad')"><a>广告管理</a></h3>
 		                        </div>
+								<div class="ileft" id="BusinessDiv">
+									<h3 onclick="clisecondMenu(this,'${basePath}/business')"><a>商户管理</a></h3>
+								</div>
+								<div class="ileft" id="OrdersDiv">
+									<h3 onclick="clisecondMenu(this,'${basePath}/orders')"><a>订单管理</a></h3>
+								</div>
+								<div class="ileft" id="CommentDiv">
+									<h3 onclick="clisecondMenu(this,'${basePath}/comment')"><a>评论管理</a></h3>
+								</div>
 		                    </div>
 		                </td>
 		                <td width="7">

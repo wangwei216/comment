@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
@@ -22,7 +23,7 @@
 					<table class="tab1">
 						<tbody>
 							<tr>
-								<td width="80" align="right">手机号：</td>
+								<td width="80" align="right">用户ID：</td>
 								<td>
 									<input name="title" id="title" value="" class="allInput" type="text">
 								</td>
@@ -43,19 +44,20 @@
 								</tr>
 
 								<%--这个地方应该是一个foreach遍历的循环来去填充--%>
+								<c:forEach items="${list}" var="item" varStatus="s">
 									<tr>
-										<td>1</td>
-										<td>13912345678</td>
-										<td>123</td>
-										<td>668</td>
+										<td>${item.businessId}</td>
+										<td>${item.memberId}</td>
+										<td>${item.id}</td>
+										<td>${item.price}</td>
+
 									</tr>
+								</c:forEach>
 							</tbody>
 
 						</table>
 						
 						<!-- 分页 -->
-						
-
 
 
 <script type="text/javascript">
