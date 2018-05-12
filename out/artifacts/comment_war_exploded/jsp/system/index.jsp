@@ -74,6 +74,7 @@
 
 						<li onclick="clickFirstMenu(this)" class=""><a><span>内容管理</span></a></li>
 						<%--这个地方是展示的是系统管理内容管理的菜单界面--%>
+						<li onclick="clickFirstMenu(this)" class=""><a><span>权限管理</span></a></li>
 		            </ul>
 		        </div>
 		    </div>
@@ -84,7 +85,7 @@
 		                <td class="leftTd" style="vertical-align:top" width="150">
 		                    <div class="left">
 		                        <div class="ileft" id="OmenuDiv">
-		                        	<h3 onclick="clisecondMenu(this,'${basePath}/ad')"><a>广告管理</a></h3>
+		                        	<h3 onclick="clisecondMenu(this,'${basePath}/ad/search')"><a>广告管理</a></h3>
 		                        </div>
 								<div class="ileft" id="BusinessDiv">
 									<h3 onclick="clisecondMenu(this,'${basePath}/business')"><a>商户管理</a></h3>

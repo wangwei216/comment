@@ -32,9 +32,8 @@
 									<input name="title" id="title" value="" class="allInput" type="text"/>
 								</td>
 	                            <td style="text-align: right;" width="150">
-	                            	<input class="tabSub" value="查询" onclick="search('1');" type="button"/>
-	                            	<t:auth url="/ad/addInit">
-	                            		<input class="tabSub" value="添加" onclick="location.href='${basePath}/ad/addInit'" type="button"/>
+	                            	<t:auth url="/ad/remove">
+	                            		<input class="tabSub" value="删除" onclick="location.href='${basePath}/ad/remove'" type="button"/>
 	                            	</t:auth>
 	                            </td>
 	       					</tr>

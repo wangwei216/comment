@@ -33,7 +33,7 @@ public class OrdersServiceImpl implements OrdersService {
         return true;
     }
 
-    /*通过id拿到订单信息*/
+    /*通过订单id拿到订单信息*/
     @Override
     public OrdersDto getById(long id) {
         OrdersDto result = new OrdersDto();
@@ -71,8 +71,9 @@ public class OrdersServiceImpl implements OrdersService {
         return result;
     }
 
+
     /*
-    * 这个是修改订单信息实现
+    * 这个是修改订单信息看是不是修改成功。以便于controller中进行使用
     *   1.先去把数据传输层的实体给复制到你要传到Dao层修改接口的参数实体
     * */
     @Override
@@ -86,4 +87,6 @@ public class OrdersServiceImpl implements OrdersService {
         }
         return true;
     }
+
+
 }

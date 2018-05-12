@@ -14,7 +14,7 @@ public interface OrdersDao {
     int insert(Orders orders);
 
     /*
-    * 查询订单信息实体信息
+    * 查询订单信息实体信息所有
     * */
     List<Orders> select(Orders orders);
 

@@ -9,7 +9,7 @@
 		<link rel="stylesheet" type="text/css" href="${basePath}/css/pop.css">
 		<link rel="stylesheet" type="text/css" href="${basePath}/css/main.css">
 		<script type="text/javascript"src="${basePath}/js/common/jquery-1.8.3.js"></script>
-		<script type="text/javascript" src="${basePath}/js/content/adList.js"></script>
+		<script type="text/javascript" src="${basePath}/js/content/orderList.js"></script>
 	</head>
 	<body style="background: #e1e9eb;">
 		<form action="http://127.0.0.1:8081/comment/ad/search" id="mainForm" method="post">
@@ -25,7 +25,7 @@
 							<tr>
 								<td width="80" align="right">用户ID：</td>
 								<td>
-									<input name="title" id="title" value="" class="allInput" type="text">
+									<input name="id" id="title" value="" class="allInput" type="text">
 								</td>
 	                            <td style="text-align: right;" width="150">
 	                            	<input class="tabSub" value="查询" onclick="search('1');" type="button">&nbsp;&nbsp;&nbsp;&nbsp;
@@ -46,8 +46,8 @@
 								<%--这个地方应该是一个foreach遍历的循环来去填充--%>
 								<c:forEach items="${list}" var="item" varStatus="s">
 									<tr>
-										<td>${item.businessId}</td>
-										<td>${item.memberId}</td>
+										<td>${item.id}</td>
+										<td>${item.member.phone}</td>
 										<td>${item.id}</td>
 										<td>${item.price}</td>
 
