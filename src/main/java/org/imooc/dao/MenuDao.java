@@ -6,18 +6,16 @@ import java.util.List;
 
 public interface MenuDao {
 	
-	/**
-	 * 根据查询条件查询菜单列表（关联动作表，结果集里包含了动作列表）
-	 * @param menu
-	 * @return 菜单列表
-	 */
+
+
+    /*
+    * 根据查询条件查询菜单列表（关联动作表，结果集里包含了动作列表）
+    * */
     List<Menu> selectWithAction(Menu menu);
     
-    /**
-     * 根据查询条件查询菜单列表（仅本表单表查询）
-     * @param menu 查询条件
-     * @return 菜单列表
-     */
+   /*
+   * 根据查询条件查询菜单列表（仅本表单表查询）
+   * */
     List<Menu> select(Menu menu);
     
     /**

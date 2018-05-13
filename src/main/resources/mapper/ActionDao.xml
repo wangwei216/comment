@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.imooc.dao.ActionDao">
+	
+	<!--根据菜单的id去删除动作-->
+	<delete id="deleteByMenuId">
+		DELETE FROM sys_action WHERE menu_id=#{_parameter}
+	</delete>
+
+	<!--根据用户行为表去删除用户行为实体-->
+	<delete id="deleteById">
+
+		DELETE FROM  sys_action WHERE id= #{_parameter}
+	</delete>
+
+	<!--新增用户动作事件-->
+	<insert id="insert">
+		INSERT INTO
+		sys_action(name,url,menu_id,method)
+		VALUES (#{name},#{url},#{menuId},#{method})
+	</insert>
+
+	<!--修改用户事件-->
+	<update id="update">
+		update sys_action t
+		<set>
+			<if test="name != null and name != ''">
+				t.name = #{name},
+			</if>
+			<if test="url != null and url != ''">
+				t.url = #{url},
+			</if>
+			<if test="menuId != null">
+				t.menu_id = #{menuId},
+			</if>
+			<if test="method != null and method != ''">
+				t.method = #{method},
+			</if>
+		</set>
+		where t.id=#{id}
+	</update>
+
+	<select id="selectById" resultType="org.imooc.bean.Action">
+		select id,name,url,menu_id,method from sys_action where id=#{_parameter}
+	</select>
+
+</mapper>

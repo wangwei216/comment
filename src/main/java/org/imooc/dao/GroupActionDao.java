@@ -5,6 +5,7 @@ import org.imooc.bean.GroupAction;
 import java.util.List;
 
 public interface GroupActionDao {
+
 	/**
 	 * 根据用户组主键，删除用户组与动作之间的关联关系
 	 * @param groupId 用户组主键
