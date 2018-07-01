@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/login")
 public class LoginController {
 
+
     @Autowired
     private UserService userService;
     //这个是springMVc中提供的session接口

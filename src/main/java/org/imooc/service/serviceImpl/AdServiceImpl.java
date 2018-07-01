@@ -73,13 +73,13 @@ public class AdServiceImpl implements AdService {
      * 因为用到了DTO，最后就是需要把你拿到的原本实体都给放到实体的DTO中(这个DTO中只含有原本实体的部分字段)
      * */
     @Override
-    public List<AdDto> searchByPage(AdDto adDto) {
+    public List<AdDto> searchAll(AdDto adDto) {
         List<AdDto> result = new ArrayList<AdDto>();
         Ad condition = new Ad();
         //这个用的是spring的工具类把adDTO里面的数据都能复制到当前创建的Ad实体中
         BeanUtils.copyProperties(adDto,condition);
         //然后这里调用dao层的数据去拿到Ad实体类的列表信息
-        List<Ad> adList = adDao.selectByPage(condition);
+        List<Ad> adList = adDao.selectAll(condition);
         //然后遍历从dao层拿到的数据
         for (Ad ad : adList){
             AdDto adDtoTemp = new AdDto();
@@ -146,6 +146,13 @@ public class AdServiceImpl implements AdService {
             return FileUtil.delete(adImageSavePath + adDto.getImgFileName());
         }
         return true;
+    }
+
+    //模糊查询
+    @Override
+    public List<AdDto> vagueQuery(AdDto adDto) {
+
+        return null;
     }
 
 }

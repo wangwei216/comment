@@ -9,6 +9,9 @@ function search() {
 	$("#mainForm").submit();
 }
 
+
 function modifyInit(id) {
-	location.href = $("#basePath").val() + "/businesses/modifyInit" + id;
+    $("#id").val(id);
+    $("#mainForm").attr("action",$("#basePath").val() + "/businesses/modifyInit");
+    $("#mainForm").submit();
 }

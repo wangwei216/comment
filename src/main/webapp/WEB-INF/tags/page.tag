@@ -1,4 +1,4 @@
-<%@ tag language="java" pageEncoding="UTF-8" %>
+	<%@ tag language="java" pageEncoding="UTF-8" %>
 <%@ attribute type="org.imooc.bean.Page" name="page" required="true" %>
 <%@ attribute type="java.lang.String" name="jsMethodName" required="true" %>
 

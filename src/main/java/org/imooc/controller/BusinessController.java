@@ -6,14 +6,13 @@ import org.imooc.service.BusinessService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping("/business")
+@RequestMapping("/businesses")
 public class BusinessController {
 
     @Autowired
@@ -76,7 +75,7 @@ public class BusinessController {
     * 这个是初始化修改商户信息
     * */
     @RequestMapping("/modifyInit")
-    public String modify(Model model, @PathVariable("id") Long id){
+    public String modify(Model model, @RequestParam("id") Long id){
         //首先先把数据传输模型放到model模型中
         model.addAttribute("modifyObj",businessService.getById(id));
 

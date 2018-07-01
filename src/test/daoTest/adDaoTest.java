@@ -17,7 +17,7 @@ public class adDaoTest extends BaseTest {
     public void testSelectByPage() throws Exception{
         Ad ad = new Ad();
 
-        List<Ad> adList  = adDao.selectByPage(ad);
+        List<Ad> adList  = adDao.selectAll(ad);
 
     }
 

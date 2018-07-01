@@ -11,11 +11,15 @@ public interface AdService {
     boolean add(AdDto adDto);
 
     //这个是通过模糊查询得到广告实体类集合
-    List<AdDto> searchByPage(AdDto adDto);
+    List<AdDto> searchAll(AdDto adDto);
     //通过根据主键删除广告的数据
     boolean remove(Long id);
     //拿到广告实体的id
     AdDto getById(Long id);
     //修改实体广告信息
     boolean modify(AdDto adDto);
+
+    //模糊查询
+    List<AdDto> vagueQuery(AdDto adDto);
+
 }

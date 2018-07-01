@@ -16,7 +16,7 @@ public interface AdDao {
     /*
      * 从数据库中查询广告信息列表
      * */
-    List<Ad> selectByPage(Ad ad);
+    List<Ad> selectAll(Ad ad);
     /*
     *
     * 根据主键删除广告列表中的数据
@@ -30,5 +30,10 @@ public interface AdDao {
     * 根据主键先查询然后再去修改广告实体类
     * */
     int update(Ad ad);
+
+    /*
+    * 根据标题名查询
+    * */
+    List<Ad> selectByTitle(Ad ad);
 
 }

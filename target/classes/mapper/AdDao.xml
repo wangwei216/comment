@@ -17,13 +17,8 @@
 
 
     <!--这个是查询广告的列表的SQL映射-->
-    <select id="selectByPage" resultType="org.imooc.bean.Ad">
+    <select id="selectAll" resultType="org.imooc.bean.Ad">
         select id,title,img_file_name,link,weight from ad
-        <where>
-            <if test="title != null and title != ''">
-                title like '%' #{title} '%'
-            </if>
-        </where>
         order by weight desc,id
     </select>
 
@@ -56,6 +51,16 @@
         where id=#{id}
     </update>
 
+    <!--根据广告名字去模糊查询-->
+    <select id="selectByTitle" resultType="org.imooc.bean.Ad">
+        select id,title,img_file_name,link,weight from ad
+        <where>
+            <if test="title != null and title != ''">
+                title like '%' #{title} '%'
+            </if>
+        </where>
+        order by weight desc,id
+    </select>
 
     </mapper>
 
