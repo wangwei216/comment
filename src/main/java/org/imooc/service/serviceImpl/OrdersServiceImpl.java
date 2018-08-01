@@ -88,5 +88,12 @@ public class OrdersServiceImpl implements OrdersService {
         return true;
     }
 
+    //查询所有的订单信息
+    @Override
+    public List<Orders> getAllList() {
+        List<Orders> ordersDaoList = ordersDao.selectAll();
+            return ordersDaoList;
+    }
+
 
 }

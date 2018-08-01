@@ -16,6 +16,16 @@ public class OrderForBuyDto {
 	private Double price;
 	// 会员手机号
 	private Long username;
+	//手机号
+	private Long phone;
+
+	public Long getPhone() {
+		return phone;
+	}
+
+	public void setPhone(Long phone) {
+		this.phone = phone;
+	}
 
 	public Long getId() {
 		return id;

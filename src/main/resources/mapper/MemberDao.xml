@@ -14,4 +14,9 @@
 		</where>
 		order by phone
 	</select>
+
+	<!--通过用户id去查询用户信息-->
+	<select id="selectByMemberId" parameterType="java.lang.Long" resultType="org.imooc.bean.Member">
+		SELECT * FROM member WHERE member.id = #{memberId}
+	</select>
 </mapper>

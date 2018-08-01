@@ -17,7 +17,7 @@
 		<script type="text/javascript" src="${basePath}/js/content/businessAdd.js"></script>
 	</head>
 	<body style="background: #e1e9eb;">
-		<form id="mainForm" method="post" action="${basePath}/businesses" enctype="multipart/form-data">
+		<form id="mainForm" method="post" action="${basePath}/businesses/addPage" enctype="multipart/form-data">
 			<input type="hidden" id="message" value="${pageCode.msg}"/>
 			<div class="right">
 				<div class="current">当前位置：<a href="###">内容管理</a> &gt; 商户管理</div>
@@ -28,11 +28,11 @@
 							<tr>
 								<td align="right" width="15%">标题<font color="red">*</font>：</td>
 								<td width="30%">
-									<input name="title" value="${modifyObj.title}" class="allInput" style="width:100%;" type="text"/>
+									<input name="title" value="" class="allInput" style="width:100%;" type="text"/>
 								</td>
 								<td align="right" width="15%">副标题<font color="red">*</font>：</td>
 								<td width="30%">
-									<input name="subtitle" value="${modifyObj.subtitle}" class="allInput" style="width:100%;" type="text"/>
+									<input name="subtitle" value="" class="allInput" style="width:100%;" type="text"/>
 								</td>
 							</tr>
 							<tr>
@@ -67,7 +67,7 @@
 							<tr>
 								<td align="right" width="10%">价格(单位：元)<font color="red">*</font>：</td>
 								<td width="30%">
-									<input name="price"  value="${modifyObj.price}" class="allInput" style="width:100%;" type="text"/>
+									<input name="price"  value="" class="allInput" style="width:100%;" type="text"/>
 								</td>
 								<td align="right" width="10%">距离(单位：米)<font color="red">*</font>：</td>
 								<td width="30%">
@@ -77,7 +77,7 @@
 							<tr>
 								<td align="right">描述<font color="red">*</font>：</td>
 								<td width="30%" colspan="3">
-									<textarea name="desc" rows="5" style="width:100%;">${modifyObj.desc}</textarea>
+									<textarea name="desc" rows="5" style="width:100%;"></textarea>
 								</td>
 							</tr>
 						</tbody>

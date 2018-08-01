@@ -11,4 +11,10 @@ public interface MemberDao {
     * @param member 查询条件
     * */
     List<Member> select(Member member);
+
+    /*
+    * 根据用户id去查询用户信息手机号
+    * */
+    Member selectByMemberId(Long memberId);
+
 }

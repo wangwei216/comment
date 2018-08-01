@@ -32,9 +32,13 @@
 	                            <td style="text-align: right;" width="150">
 	                            	<input class="tabSub" value="查询" onclick="search('1');" type="button"/>&nbsp;&nbsp;&nbsp;&nbsp;
 	                            	<t:auth url="/businesses/addPage" method="GET">
-	                            		<input class="tabSub" value="添加" onclick="location.href='${basePath}/businesses/addPage'" type="button"/>
+	                            		<input class="tabSub" value="查询" onclick="location.href='${basePath}/businesses/addPage'" type="button"/>
 	                            	</t:auth>
 	                            </td>
+
+								<td style="text-align: right;" width="150">
+									<input class="tabSub" value="添加" onclick="location.href='${basePath}/businesses/addPageInit'" type="button"/>&nbsp;&nbsp;&nbsp;&nbsp;
+								</td>
 	       					</tr>
 						</tbody>
 					</table>
@@ -45,8 +49,8 @@
 								    <th>序号</th>
 								    <th>标题</th>
 								    <th>副标题</th>
-								    <th>城市</th>
-								    <th>类别</th>
+								    <th>店铺描述</th>
+								    <th>店铺距离</th>
 								    <th>操作</th>
 								</tr>
 								
@@ -55,8 +59,8 @@
 										<td>${s.index + 1}</td>
 										<td>${item.title}</td>
 										<td>${item.subtitle}</td>
-										<td>${item.cityDic.name}</td>
-										<td>${item.categoryDic.name}</td>
+										<td>${item.desc}</td>
+										<td>${item.distance}</td>
 										<td>
 											<tr:auth url="/businesses/modifyInit">
 												<a href="javascript:void(0);" onclick="modifyInit('${item.id}')">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;

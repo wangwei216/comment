@@ -88,10 +88,10 @@
 		                        	<h3 onclick="window.location.href='${basePath}/ad/search'"><a>广告管理</a></h3>
 		                        </div>
 								<div class="ileft" id="BusinessDiv">
-									<h3 onclick="window.location.href='${basePath}/businesses'"><a>商户管理</a></h3>
+									<h3 onclick="window.location.href='${basePath}/businesses/queryList'"><a>商户管理</a></h3>
 								</div>
 								<div class="ileft" id="OrdersDiv">
-									<h3 onclick="window.location.href='${basePath}/orders'"><a>订单管理</a></h3>
+									<h3 onclick="window.location.href='${basePath}/orders/allorders'"><a>订单管理</a></h3>
 								</div>
 								<div class="ileft" id="CommentDiv">
 									<h3 onclick="window.location.href='${basePath}/comments'"><a>评论管理</a></h3>

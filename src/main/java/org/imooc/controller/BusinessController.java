@@ -22,16 +22,14 @@ public class BusinessController {
     /*
     * 商户新增页面的初始化
     * */
-    @RequestMapping(value = "/addPage", method = RequestMethod.GET)
+    @RequestMapping(value = "/addPageInit", method = RequestMethod.GET)
     public String addInit(Model model) {
-        /*model.addAttribute("cityList", dicService.getListByType(DicTypeConst.CITY));
-        model.addAttribute("categoryList", dicService.getListByType(DicTypeConst.CATEGORY));*/
         return "/content/businessAdd";
     }
     /*
     * 商户新增功能
     * */
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value = "/addPage",method = RequestMethod.POST)
     public String addInit(BusinessDto businessDto, RedirectAttributes attr){
         //判断从Service层是不是插入数据库成功
         if (businessService.add(businessDto)){
@@ -47,7 +45,7 @@ public class BusinessController {
     /*
     * 查询商户列表
     * */
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "/queryList",method = RequestMethod.GET)
     public String search(Model model ,BusinessDto dto){
         //这个是把从service层获取到的集合数据返回给前端对应的list属性名中
         model.addAttribute("list",businessService.searchByPage(dto));
@@ -74,8 +72,8 @@ public class BusinessController {
     /*
     * 这个是初始化修改商户信息
     * */
-    @RequestMapping("/modifyInit")
-    public String modify(Model model, @RequestParam("id") Long id){
+    @RequestMapping(value = "/modifyInit",method = RequestMethod.GET)
+    public String modify(Model model, @RequestParam("id") int id){
         //首先先把数据传输模型放到model模型中
         model.addAttribute("modifyObj",businessService.getById(id));
 
@@ -88,7 +86,8 @@ public class BusinessController {
     public String modify(Model model,BusinessDto businessDto){
         //先把数据传输的数据实体set进model中
         model.addAttribute("modifyObj",businessDto);
-        if (businessService.modify(businessDto)){
+        int id = businessDto.getId();
+        if (businessService.modify(businessDto,id)){
             model.addAttribute(PageCodeEnum.KEY, PageCodeEnum.MODIFY_SUCCESS);
         }
         else {

@@ -21,7 +21,7 @@ public interface BusinessService {
     Boolean remove(long id);
 
         //修改商户信息
-    boolean modify(BusinessDto businessDto);
+    boolean modify(BusinessDto businessDto,int id);
 
     /*
      * 通过分页查询条件去查询

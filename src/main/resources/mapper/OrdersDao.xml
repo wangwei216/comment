@@ -56,6 +56,9 @@
     where id=#{id}
 </update>
 
+    <select id="selectAll" resultMap="OrdersResultMap">
+        SELECT * FROM orders
+    </select>
 
 </mapper>
 

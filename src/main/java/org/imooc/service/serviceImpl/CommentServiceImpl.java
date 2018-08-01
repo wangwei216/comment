@@ -27,7 +27,7 @@ public class CommentServiceImpl implements CommentService {
     *
     * */
     @Override
-    public CommentListDto getListByBusinessId(Long businessId, Page page) {
+    public CommentListDto getListByBusinessId(int businessId, Page page) {
 
         CommentListDto result = new CommentListDto();
         Comment comment = new Comment();

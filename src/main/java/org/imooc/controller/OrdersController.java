@@ -1,9 +1,14 @@
 package org.imooc.controller;
 
+import org.imooc.bean.Member;
+import org.imooc.bean.Orders;
 import org.imooc.constant.PageCodeEnum;
+import org.imooc.dto.OrderForBuyDto;
 import org.imooc.dto.OrdersDto;
+import org.imooc.service.MemberService;
 import org.imooc.service.OrdersService;
 import org.imooc.service.UserService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -21,6 +27,8 @@ public class OrdersController {
 	private OrdersService ordersService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private MemberService memberService;
 	
 	@RequestMapping
 	public String init() {
@@ -28,7 +36,37 @@ public class OrdersController {
 	}
 
 	/*
-	* 这个是从用户的Id去查询订单信息所关联的其他表的信息，
+	* 这个是展示订单的是列表
+	*
+	* */
+		@RequestMapping("/allorders")
+	public String initList(Model model){
+			List<OrderForBuyDto> result = new ArrayList<OrderForBuyDto>();
+		//先拿到订单信息的列表
+		List<Orders> allList = ordersService.getAllList();
+		if (allList.size()>0 && allList!=null){
+			for (Orders orders : allList) {
+				OrderForBuyDto temOrderForBuyDto = new OrderForBuyDto();
+				BeanUtils.copyProperties(orders,temOrderForBuyDto);
+				Long memberId = orders.getId();
+				Member member = memberService.memberByMemberId(memberId);
+				temOrderForBuyDto.setPhone(member.getPhone());
+				result.add(temOrderForBuyDto);
+			}
+
+			model.addAttribute("list",result);
+			return "/content/allOrderList";
+
+		}else {
+			return "/error";
+		}
+
+
+	}
+
+	/*
+	* 这个		//然后再去根据用户主键去查询用户的信息
+		是从用户的Id去查询订单信息所关联的其他表的信息，
 	* */
 	@RequestMapping("/search")
 	public String search(Model model , OrdersDto ordersDto){

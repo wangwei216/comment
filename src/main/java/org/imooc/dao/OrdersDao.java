@@ -27,4 +27,9 @@ public interface OrdersDao {
     * */
     int update(Orders orders);
 
+    /*
+    * 查询所有的用户信息
+    * */
+    List<Orders> selectAll();
+
 }

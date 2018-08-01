@@ -23,11 +23,11 @@
 		        <form id="mainForm" method="post" action="${basePath}/login/validate">
 		            <fieldset>
 		                <div class="input">
-		                    <input class="input_all name" name="name" id="name" placeholder="用户名" type="text" onFocus="this.className='input_all name_now';" onBlur="this.className='input_all name'"/>
+		                    <input class="input_all name" name="name" id="name" placeholder="用户名" type="text"/>
 		                </div>
 		                <div class="input">
-		                	<input type="hidden" name="password" id="password_md5"/>
-		                    <input class="input_all password" id="password" type="password" placeholder="密码" onFocus="this.className='input_all password_now';" onBlur="this.className='input_all password'"/>
+		                	<input type="hidden" id="password_md5"/>
+		                    <input class="input_all password" name="password"  id="password" type="password" placeholder="密码"/>
 		                </div>
 		                <div class="checkbox">
 		                    <input type="checkbox" name="remember" id="remember" /><label for="remember"><span>记住密码</span></label>

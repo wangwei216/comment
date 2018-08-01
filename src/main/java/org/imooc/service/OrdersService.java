@@ -1,5 +1,6 @@
 package org.imooc.service;
 
+import org.imooc.bean.Orders;
 import org.imooc.dto.OrdersDto;
 
 import java.util.List;
@@ -19,6 +20,8 @@ public interface OrdersService {
     Boolean modify(OrdersDto ordersDto);
 
 
+    //这个是开始初始化的时候查询所有的订单信息
+    List<Orders> getAllList();
 
 
 }

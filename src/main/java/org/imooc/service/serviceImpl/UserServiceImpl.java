@@ -37,12 +37,14 @@ public class UserServiceImpl implements UserService {
         if (userDto != null && !CommonUtil.isEmpty(userDto.getName()) && !CommonUtil.isEmpty(userDto.getPassword())) {
             User user = new User();
             BeanUtils.copyProperties(userDto, user);
-            List<User> list = userDao.select(user);
-            if(list.size() == 1) {
-                BeanUtils.copyProperties(list.get(0),userDto);
+
+            int effectNum = userDao.selectByNameAndPassword(userDto.getName(), user.getPassword());
+            if(effectNum == 1) {
                 return true;
+            }else {
+                return false;
             }
-            return false;
+
         }
         return false;
     }

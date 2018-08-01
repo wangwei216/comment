@@ -1,5 +1,6 @@
 package org.imooc.dao;
 
+import org.apache.ibatis.annotations.Param;
 import org.imooc.bean.User;
 import org.springframework.stereotype.Repository;
 
@@ -8,6 +9,7 @@ import java.util.List;
 @Repository
 public interface UserDao {
 
+    int  selectByNameAndPassword(@Param("name") String name, @Param("password") String password);
     /**
      * 根据查询条件查询用户列表
      * @param user 查询条件

@@ -15,3 +15,9 @@ function modifyInit(id) {
     $("#mainForm").attr("action",$("#basePath").val() + "/businesses/modifyInit");
     $("#mainForm").submit();
 }
+
+function add() {
+    $("#mainForm").attr("method","PUT");
+    $("#mainForm").attr("action",$("#basePath").val() + "/businesses/addPage");
+    $("#mainForm").submit();
+}

@@ -22,6 +22,16 @@ public class MemberServiceImpl implements MemberService {
 	private final static Logger logger = LoggerFactory
 			.getLogger(MemberService.class);
 
+	/*
+	* 根据用户id去查询用户信息
+	*
+	* */
+	@Override
+	public Member memberByMemberId(Long memberId) {
+		Member member = memberDao.selectByMemberId(memberId);
+		return member;
+	}
+
 	@Override
 	public boolean exists(Long phone) {
 		Member member = new Member();

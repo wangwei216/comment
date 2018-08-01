@@ -1,7 +1,6 @@
 package org.imooc.controller;
 
 import org.imooc.constant.PageCodeEnum;
-import org.imooc.constant.SessionKeyConst;
 import org.imooc.dto.UserDto;
 import org.imooc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -38,16 +38,21 @@ public class LoginController {
     *
     * */
     @RequestMapping("/validate")
-    public String validate(UserDto userDto, RedirectAttributes attr) {
-        if (userService.validate(userDto)) {
-            session.setAttribute(SessionKeyConst.USER_INFO, userDto);
-/*            GroupDto groupDto = groupService.getByIdWithMenuAction(userDto.getGroupId());
-            session.setAttribute(SessionKeyConst.MENU_INFO,groupDto.getMenuDtoList());
-            session.setAttribute(SessionKeyConst.ACTION_INFO, groupDto.getActionDtoList());*/
+    public String validate(UserDto userDto, RedirectAttributes attr, HttpServletRequest request) {
+        String name = request.getParameter("name");
+        String password = request.getParameter("password");
+        userDto.setName(name);
+        userDto.setPassword(password);
+        Boolean effect = userService.validate(userDto);
+        if (effect) {
             return "/system/index";
         }
-        attr.addFlashAttribute(PageCodeEnum.KEY, PageCodeEnum.LOGIN_FAIL);
-        return "redirect:/login";
+        else {
+            System.out.println("登录失败");
+            attr.addFlashAttribute(PageCodeEnum.KEY, PageCodeEnum.LOGIN_FAIL);
+            return "redirect:/login";
+        }
+
     }
 
     /*

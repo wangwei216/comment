@@ -14,12 +14,11 @@
 		<script type="text/javascript" src="${basePath}/js/common/validation/jquery.validate.js"></script>
 		<script type="text/javascript" src="${basePath}/js/common/validation/messages_zh.js"></script>
 		<script type="text/javascript" src="${basePath}/js/common/common.js"></script>
-		<script type="text/javascript" src="${basePath}/js/content/businessModify.js"></script>
+		<script type="text/javascript" src="${basePath}/js/content/businessAdd.js"></script>
 	</head>
 	<body style="background: #e1e9eb;">
-		<form id="mainForm" method="post" action="${basePath}/businesses/${modifyObj.id}" enctype="multipart/form-data">
+		<form id="mainForm" method="post" action="${basePath}/businesses/modify" enctype="multipart/form-data">
 			<input type="hidden" id="message" value="${pageCode.msg}"/>
-			<input type="hidden" name="_method" value="PUT"/>
 			<div class="right">
 				<div class="current">当前位置：<a href="###">内容管理</a> &gt; 商户管理</div>
 				<div class="rightCont">
@@ -78,13 +77,13 @@
 							<tr>
 								<td align="right">描述<font color="red">*</font>：</td>
 								<td width="30%" colspan="3">
-									<textarea name="desc" rows="5" style="width:100%;">${modifyObj.desc}</textarea>
+									<textarea name="desc" value="${modifyObj.desc}" rows="5" style="width:100%;"></textarea>
 								</td>
 							</tr>
 						</tbody>
 					</table>
 					<div style="text-align: center; margin-top: 30px;">
-						<input class="tabSub" value="保     存" type="button" onclick="modify();"/>&nbsp;&nbsp;&nbsp;&nbsp;
+						<input class="tabSub" value="保     存" type="button" onclick="add();"/>&nbsp;&nbsp;&nbsp;&nbsp;
 						<input class="tabSub" value="返     回" type="button"/>
 					</div>
 				</div>

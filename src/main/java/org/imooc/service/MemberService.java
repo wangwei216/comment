@@ -1,7 +1,15 @@
 package org.imooc.service;
 
+import org.imooc.bean.Member;
+
 public interface MemberService {
-    
+
+
+    /*
+    * 根据用户id去查询用户信息
+    * */
+    Member memberByMemberId(Long memberId);
+
     /**
      * 判断手机号是否存在
      * @param phone 手机号

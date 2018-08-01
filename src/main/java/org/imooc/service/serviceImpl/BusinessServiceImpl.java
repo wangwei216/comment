@@ -53,9 +53,9 @@ public class BusinessServiceImpl  implements BusinessService{
                 // 默认已售数量为0
                 business.setNumber(5);
                 // 默认评论总次数为0
-                business.setCommentTotalNum(1L);
+                business.setCommentTotalNum(1);
                 // 默认评论星星总数为0
-                business.setStarTotalNum(3L);
+                business.setStarTotalNum(3);
                 //然后调用dao层
                 businessDao.insert(business);
                 return true;
@@ -111,7 +111,7 @@ public class BusinessServiceImpl  implements BusinessService{
      *
      * */
     @Override
-    public boolean modify(BusinessDto businessDto) {
+    public boolean modify(BusinessDto businessDto ,int id) {
         Business business = new Business();
         String fileName = null;
         BeanUtils.copyProperties(businessDto,business);
@@ -125,7 +125,8 @@ public class BusinessServiceImpl  implements BusinessService{
                 return false;
             }
         }
-        int updateNum = businessDao.update(business);
+
+        int updateNum = businessDao.update(business,id);
         if (updateNum!=1){
             return false;
         }
@@ -211,7 +212,7 @@ public class BusinessServiceImpl  implements BusinessService{
     * 这个是得到商户星级的信息的一个方法
     * */
     private int getStar(Business business) {
-        if(business.getStarTotalNum() != null && business.getCommentTotalNum() != null && business.getCommentTotalNum() != 0) {
+        if( business.getCommentTotalNum() != 0) {
             return (int)(business.getStarTotalNum() / business.getCommentTotalNum());
         } else {
             return 0;

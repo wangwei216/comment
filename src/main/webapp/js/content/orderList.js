@@ -2,7 +2,8 @@ $(function() {
 	common.showMessage($("#message").val());
 });
 
-function search() {
+function search(id) {
+    $("#id").val(id);
 	$("#mainForm").submit();
 }
 
